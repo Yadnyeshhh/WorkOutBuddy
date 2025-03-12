@@ -16,7 +16,7 @@ const Login = () => {
     const info = { email, password };
     // console.log("Sending data:", JSON.stringify(info));
 
-    const response = await fetch("/api/user/login", {
+    const response = await fetch("https://workoutbuddy-backend-aj5e.onrender.com/api/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
