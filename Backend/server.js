@@ -26,7 +26,7 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     //listen for request
-    app.listen(/workoutbuddy-backend-aj5e.onrender.com, () => {
+    app.listen(process.env.PORT || 4000, () => {
       console.log("connected to db and listening on port 4000!!");
     });
   })
