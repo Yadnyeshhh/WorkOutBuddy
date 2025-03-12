@@ -3,8 +3,15 @@ import { WorkoutContext } from "../Context/context";
 const Workoutdetails = ({ workout }) => {
   const value = useContext(WorkoutContext);
   const handleOnClick = async () => {
+    const User = JSON.parse(localStorage.getItem("user"));
+    if (!User) {
+      return;
+    }
     const response = await fetch("/api/workouts/" + workout._id, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${User.token}`,
+      },
     });
     if (response.ok) {
       value.setworkouts((prevWorkouts) =>

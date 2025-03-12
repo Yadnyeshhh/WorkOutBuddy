@@ -1,20 +1,57 @@
 // import logo from "./logo.svg";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Home from "./Pages/home";
+import Login from "./Pages/login";
+import Signup from "./Pages/signup";
 import Navbar from "./components/Navbar";
+import { AuthContext } from "./Context/Authcontext";
+import { WorkoutContext } from "./Context/context";
 
 function App() {
+  const [logState, setLogState] = useState(null);
+  const [workouts, setworkouts] = useState([]);
+  useEffect(() => {
+    const user = localStorage.getItem("user"); // Check for specific key
+    setLogState(user ? "loggedin" : "loggedout");
+  }, []);
+
   return (
     <>
-      <BrowserRouter>
-        <Navbar />
-        <div className="pages">
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <AuthContext.Provider value={{ logState, setLogState }}>
+        <WorkoutContext.Provider value={{ workouts, setworkouts }}>
+          <BrowserRouter>
+            <Navbar />
+            <div className="pages">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    logState === "loggedin" ? (
+                      <Home />
+                    ) : (
+                      <Navigate to="/login" />
+                    )
+                  }
+                ></Route>
+                <Route
+                  path="/login"
+                  element={
+                    logState === "loggedout" ? <Login /> : <Navigate to="/" />
+                  }
+                ></Route>
+                <Route
+                  path="/signup"
+                  element={
+                    logState === "loggedout" ? <Signup /> : <Navigate to="/" />
+                  }
+                ></Route>
+              </Routes>
+            </div>
+          </BrowserRouter>
+        </WorkoutContext.Provider>
+      </AuthContext.Provider>
     </>
   );
 }

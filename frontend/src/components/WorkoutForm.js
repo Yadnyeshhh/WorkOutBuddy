@@ -10,18 +10,25 @@ const WorkoutForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const User = JSON.parse(localStorage.getItem("user"));
+    if (!User) {
+      seterror("u must be logged out");
+      return;
+    }
     const workout = { title, load, reps };
     const response = await fetch("/api/workouts", {
       method: "POST",
+
       body: JSON.stringify(workout),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${User.token}`,
       },
     });
     const json = await response.json();
     if (!response.ok) {
       seterror(json.error);
-      setEmptyFields(json.emptyFields);
+      setEmptyFields(json.emptyFields || []);
       return;
     }
 
