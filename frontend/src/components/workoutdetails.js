@@ -7,7 +7,7 @@ const Workoutdetails = ({ workout }) => {
     if (!User) {
       return;
     }
-    const response = await fetch("/api/workouts/" + workout._id, {
+    const response = await fetch("https://workoutbuddy-backend-aj5e.onrender.com/api/workouts/" + workout._id, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${User.token}`,
