@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const User = JSON.parse(localStorage.getItem("user"));
     const fetchWorkout = async () => {
-      const response = await fetch("/api/workouts", {
+      const response = await fetch("https://workoutbuddy-backend-aj5e.onrender.com/api/workouts", {
         headers: {
           Authorization: `Bearer ${User.token}`,
         },
