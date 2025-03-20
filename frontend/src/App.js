@@ -13,16 +13,31 @@ function App() {
   const [logState, setLogState] = useState(null);
   const [workouts, setworkouts] = useState([]);
   useEffect(() => {
-    const user = localStorage.getItem("user"); // Check for specific key
+    const user = localStorage.getItem("user");
     setLogState(user ? "loggedin" : "loggedout");
   }, []);
+
+  useEffect(() => {
+    // Change body background based on login state
+    if (logState === "loggedin") {
+      document.body.classList.add("logged-in");
+      document.body.classList.remove("logged-out");
+    } else {
+      document.body.classList.add("logged-out");
+      document.body.classList.remove("logged-in");
+    }
+  }, [logState]);
+
+  const showNavbar = () => logState !== "loggedout"; // returns true if logged in, false if logged out
+
+  // console.log(showNavbar());
 
   return (
     <>
       <AuthContext.Provider value={{ logState, setLogState }}>
         <WorkoutContext.Provider value={{ workouts, setworkouts }}>
           <BrowserRouter>
-            <Navbar />
+            {showNavbar() && <Navbar />}
             <div className="pages">
               <Routes>
                 <Route

@@ -25,7 +25,7 @@ const Home = () => {
     if (logState === "loggedin") {
       fetchWorkout();
     }
-  }, [logState, data]);
+  }, []);
 
   return (
     <div className="home">

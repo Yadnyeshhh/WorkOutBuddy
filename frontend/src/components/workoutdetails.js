@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { WorkoutContext } from "../Context/context";
+
 const Workoutdetails = ({ workout }) => {
   const value = useContext(WorkoutContext);
   const handleOnClick = async () => {
@@ -33,7 +34,7 @@ const Workoutdetails = ({ workout }) => {
         <p>{new Date(workout.createdAt).toLocaleString()}</p>
 
         <span className="delete" onClick={handleOnClick}>
-          delete
+          delete{" "}
         </span>
       </div>
     </>

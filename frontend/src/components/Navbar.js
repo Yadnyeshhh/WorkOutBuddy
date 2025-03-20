@@ -20,22 +20,11 @@ const Navbar = () => {
         </Link>
         <nav>
           {state.logState === "loggedin" && (
-            <div>
-              <span
-                className="email
-              "
-              >
-                {User.email}
-              </span>
+            <div className="info">
+              <span className="email">{User.email}</span>
               <div className="logout">
                 <button onClick={handleClick}>Logout</button>
               </div>
-            </div>
-          )}
-          {state.logState === "loggedout" && (
-            <div>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">signup</Link>
             </div>
           )}
         </nav>

@@ -5,14 +5,44 @@
 :root {
   --primary: #1aac83;
   --error: #e7195a;
+  padding: 0%;
 }
-body {
-  background: #f1f1f1;
+body.logged-out {
+  /* background: #f1f1f1; */
+  background-image: url("./assets/bgimage-wob.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  /* background-color: rgba(253, 231, 231, 0.6); */
+  margin: 0;
+  font-family: "Poppins";
+  /* opacity: 0.7; */
+}
+body.logged-in {
+  background-image: url("./assets/background.jpg");
+  /* background-color: #1e1e2f; */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  /* background-color: rgba(253, 231, 231, 0.6); */
   margin: 0;
   font-family: "Poppins";
 }
 header {
-  background: #fff;
+  /* background-color: #4b393907; */
+  /* background-color: #2d2b2b;
+   */
+  /* position: fixed; */
+
+  background-image: url("./assets/bgimage-wob.jpg");
+
+  width: 100vw;
+  margin-bottom: 1px;
+  z-index: 2;
+  /* display: flex; */
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
 }
 header .container {
   max-width: 1400px;
@@ -23,22 +53,29 @@ header .container {
   justify-content: space-between;
 }
 header a {
-  color: #333;
+  color: #fff4f4;
   text-decoration: none;
+  font-style: italic;
 }
 .pages {
+  position: relative;
   max-width: 1400px;
   /* width: 100vw; */
-  padding: 20px;
-  margin: 0 auto;
+  padding: 0px;
+  margin: 0;
+  /* padding-top: 100px; */
 }
 
 .home {
+  position: relative;
   display: flex;
   flex-direction: row;
   width: 100vw;
+  /* height: 100vh; */
+  /* background-color: #1aac83; */
 }
 .workoutdetails {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -46,9 +83,12 @@ header a {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
   padding: 1rem;
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   margin: 10px;
+  margin-top: 20px;
   position: relative;
+  margin-left: 5%;
 }
 
 .workoutdetails h4 {
@@ -67,40 +107,50 @@ header a {
   position: absolute;
   top: 10px;
   right: 10px;
+  background-color: #dc2626; /* Tailwind's red-600 */
+  color: white;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
   cursor: pointer;
-  background-color: #f45a5a;
-  color: #fff;
-  padding: 5px;
-  border-radius: 0.5rem;
-  font-weight: bold;
-  font-size: 1.2rem;
-  transition: 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+}
+.delete:hover {
+  background-color: #b91c1c;
 }
 
-.workoutform {
-  /* width: 100%; */
-  position: relative;
-  left: 5rem;
-  display: flex;
-  justify-content: flex-end;
-  justify-items: flex-end;
-}
 .createform {
+  position: absolute;
+  margin-top: 2rem;
+  right: 3rem;
   display: flex;
   flex-direction: column;
   width: 20vw;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  background-color: #2c2f33;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 10px 0px 5px rgba(0, 0, 0, 0.2);
 }
 .createform h4 {
   font-size: 1.5rem;
   margin: 10px;
+  color: #fff;
 }
-.createform label,
-input {
+.createform label {
   font-size: 1.2rem;
   width: 100%;
+  color: #fff;
+}
+.createform input {
+  background-color: #f3f2f2;
+  border: none;
+  border-radius: 1rem;
+  width: 100%;
+  height: 1.5rem;
+  font-weight: bold;
 }
 input.error {
   font-size: 1.2rem;
@@ -108,19 +158,27 @@ input.error {
   border: solid #e7195a 1px;
 }
 .createform button {
+  height: 2.8rem;
   width: 100%;
-  height: 2.5rem;
-  margin-top: 10px;
-  background-color: #56eac0;
+  border-radius: 50px;
   border: none;
-  border-radius: 1rem;
-  font-size: 1.2rem;
+  background: linear-gradient(135deg, #545a8e, #392956);
   color: #fff;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 0.8rem 2rem;
+  transition: all 0.5s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .createform button:hover {
   cursor: pointer;
-  background-color: #1aac83;
+  /* background-color: #1aac83; */
+  background: linear-gradient(135deg, #7984e2, #d4cfde);
+  transform: translateY(3px);
+  /* transition: 1s; */
 }
 div.error {
   width: 100%;
@@ -133,73 +191,149 @@ div.error {
   background-color: #ffd4e2;
 }
 
-form.signup,
-form.login {
-  width: 40vw;
-  margin: 40px auto;
-  background-color: white;
-  padding: 20px;
-  padding-left: 10px;
-  border-radius: 2rem;
+.signup {
+  /* background-color: #d8d2d2; */
+  background: linear-gradient(
+    135deg,
+    rgba(94, 133, 148, 0.8),
+    rgba(45, 55, 72, 0.8)
+  );
+  width: 45vw;
+  margin: 0%;
+  height: 100vh;
+  position: absolute;
+  left: 0px;
+  border-top-right-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* gap: 10px; */
+  box-shadow: 10px 0px 8px rgba(0, 0, 0, 0.2);
 }
-
-.signup label,
-input {
-  font-size: 1.2rem;
-  width: 100%;
-  margin: 10px;
+.signup span {
+  position: absolute;
+  top: 2rem;
+  left: 3rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  font-style: italic;
+  cursor: default;
 }
-.login label,
-input {
-  font-size: 1.2rem;
-  width: 100%;
-  margin: 10px;
+.signup h3 {
+  margin: 0%;
+  color: #fff;
+  /* align-self: center; */
+  position: relative;
+  font-size: 2.5rem;
+  cursor: default;
+  /* margin-bottom: 10px; */
 }
-
-.signup button,
-.login button {
-  width: 100%;
-  height: 2.5rem;
+.signup p {
+  margin: 0px;
+  padding: 0%;
+  margin-top: -10px;
+  margin-bottom: 3rem;
+  color: #ffffff;
+  text-decoration: underline;
+  cursor: default;
+}
+.signup hr {
+  width: 40%;
+}
+.formcontent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   margin-top: 10px;
-  background-color: #56eac0;
-  border: none;
-  border-radius: 1rem;
-  font-size: 1.2rem;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
 }
-.logout button {
-  width: 100%;
-  height: 2.5rem;
-  /* margin-top: 10px; */
-  background-color: #f36a6a;
-  border: none;
+
+.formcontent input {
+  height: 2.2rem;
+  margin: 5px;
+  width: 20vw;
   border-radius: 1rem;
-  font-size: 1.2rem;
-  color: #fff;
+  border: none;
+  background-color: #f3fcf9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+}
+.formcontent p {
+  text-decoration: none;
+  margin-top: 10px;
+}
+.formcontent a {
+  color: black;
   font-weight: bold;
+}
+.formcontent a:hover {
+  font-size: 1.2rem;
+}
+.signup button {
+  align-self: center;
+  height: 2.8rem;
+  width: 10rem;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, #6e7cfa, #1d2b64);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   cursor: pointer;
+  padding: 0.8rem 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* display: inline-block;  */
+}
+
+.signup button:hover {
+  background: linear-gradient(135deg, #1d2b64, #6e7cfa);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.signup button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logout button {
+  height: 2.8rem;
+  width: 10rem;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, #fa6e6e, #641d1d);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 0.8rem 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* cursor: pointer; */
 }
 .logout button:hover {
   background-color: #e7195a;
   color: black;
+  transform: translateY(-3px);
   transition: 0.3s;
 }
-
-nav {
+.info {
   display: flex;
-  align-items: center;
+  gap: 2rem;
+  justify-content: center;
 }
-nav a {
-  margin-left: 10px;
-  font-weight: bold;
-  background-color: #56eac0;
+.info span {
+  color: #fff;
+  /* margin: 10px; */
+  font-weight: bolder;
   border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.45);
   padding: 10px;
-}
-nav a:hover {
-  background-color: #1aac83;
-  color: white;
-  transition: 0.3s;
 }

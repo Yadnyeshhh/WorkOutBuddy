@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../Context/Authcontext";
+import { Link } from "react-router-dom";
+
 const Signup = () => {
   const state = useContext(AuthContext);
   const [email, setEmail] = useState("");
@@ -44,21 +46,31 @@ const Signup = () => {
   };
   return (
     <form action="" className="signup" onSubmit={handleSubmit}>
-      <h3>signup</h3>
-
-      <label htmlFor="">email</label>
-      <input
-        type="email"
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-      />
-      <label htmlFor="">password</label>
-      <input
-        type="text"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      />
-      <button disabled={isLoading}>sign up</button>
+      <span>WorkOutBuddy</span>
+      {/* <hr /> */}
+      <h3>WELCOME</h3>
+      <p>please login</p>
+      <div className="formcontent">
+        {/* <label htmlFor="">email</label> */}
+        <input
+          type="email"
+          placeholder="youremail@example.com"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        />
+        {/* <label htmlFor="">password</label> */}
+        <input
+          type="text"
+          placeholder="pasword"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
+        <button disabled={isLoading}>sign up</button>
+        <p>
+          Already have an account? - <Link to="/login">Login</Link>
+        </p>
+      </div>
+      {/* <hr /> */}
     </form>
   );
 };
