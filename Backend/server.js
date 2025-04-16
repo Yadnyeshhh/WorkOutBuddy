@@ -18,8 +18,8 @@ app.use((req, res, next) => {
 });
 
 //routes
-app.use("/api/workouts", workoutRoutes);
-app.use("/api/user", userRoutes);
+app.use("/", workoutRoutes);
+app.use("/", userRoutes);
 
 //connect to db
 mongoose
